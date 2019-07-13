@@ -23,7 +23,8 @@ public class XAppClassLoader extends URLClassLoader{
 	protected static URL[] getAllURL(String path){
 		List<File>files = getAllClassFileUnderPath(path, new ArrayList<File>());
 		if(files.isEmpty()){
-			throw new RuntimeException("No class file found!");
+//			throw new RuntimeException("No class file found!");
+			return new URL[0];
 		}
 		URL[] urls = new URL[files.size()];
 		int i = 0;

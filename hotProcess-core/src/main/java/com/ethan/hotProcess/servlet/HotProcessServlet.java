@@ -45,9 +45,9 @@ public class HotProcessServlet extends HttpServlet {
 	public void init() throws ServletException{
 		super.init();
 		servletContext = this.getServletContext();
-		springApplicationContext = (ApplicationContext) WebApplicationContextUtils.getWebApplicationContext(servletContext);
-		dispatcherServlet = springApplicationContext.getBean(DispatcherServlet.class);
-		dispatcherServlet.init();
+//		springApplicationContext = (ApplicationContext) WebApplicationContextUtils.getWebApplicationContext(servletContext);
+//		dispatcherServlet = springApplicationContext.getBean(DispatcherServlet.class);
+//		dispatcherServlet.init();
 	}
 	
 	public HotProcessServlet(){
@@ -83,7 +83,7 @@ public class HotProcessServlet extends HttpServlet {
 		if(appContext == null || (!appContext.isRunning())){
 			throw new RuntimeException("App is not running!");
 		}
-		if(req.getRequestURI().equals("manage")){
+		if(req.getRequestURI().equals("/manage")){
 			manage(req, resp);
 		}else{
 			appContext.dispatch(req, resp);

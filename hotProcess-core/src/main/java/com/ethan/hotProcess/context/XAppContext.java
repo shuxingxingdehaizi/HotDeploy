@@ -71,6 +71,9 @@ public class XAppContext implements Lifecycle{
 		File f = new File(appClassLoader.getRootClassPath()+File.separator+APP_COMPONENT_FOLDER);
 		
 		for(File component : f.listFiles()){
+			if(!component.isDirectory()){
+				continue;
+			}
 			String componentName = component.getName();
 			for(File versionDir : component.listFiles()){
 				if(DEFAULT_LOAD_COMPONENT_VERSION.equals(versionDir.getName())){
@@ -229,7 +232,6 @@ public class XAppContext implements Lifecycle{
 		if(!context.isRunning()){
 			logger.info("component["+context.getComponentName()+"] is not running!");
 		}
-		
 		context.dispatch(request, response);
 	}
 	

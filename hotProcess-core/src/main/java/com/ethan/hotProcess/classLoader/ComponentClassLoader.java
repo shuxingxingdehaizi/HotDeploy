@@ -57,14 +57,15 @@ public class ComponentClassLoader extends URLClassLoader{
 			if(f.getName().endsWith(".jar") || f.getName().endsWith(".class")){
 				files.add(f);
 			}
-		}
-		for(File cf : f.listFiles()){
-			if(!f.isDirectory()){
-				if(f.getName().endsWith(".jar") || f.getName().endsWith(".class")){
-					files.add(f);
+		}else{
+			for(File cf : f.listFiles()){
+				if(!f.isDirectory()){
+					if(f.getName().endsWith(".jar") || f.getName().endsWith(".class")){
+						files.add(f);
+					}
+				}else{
+					getAllClassFileUnderPath(cf.getAbsolutePath(),files);
 				}
-			}else{
-				getAllClassFileUnderPath(cf.getAbsolutePath(),files);
 			}
 		}
 		return files;
